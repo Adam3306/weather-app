@@ -29,36 +29,34 @@ export default function Search() {
   };
 
   return (
-    <form>
-      <div className="placesAutocomplete">
-        <div className="placesAutocomplete__inputWrap">
-          <input
-            list="places"
-            type="text"
-            id="city"
-            name="city"
-            onChange={handleCityChange}
-            value={city}
-            required
-            autoComplete="on"
-          />
-          <div id="places">
-            {autocompleteCities.map((city, i) => (
-              <p
-                id={city}
-                key={i}
-                onClick={onCityClick}
-                style={{
-                  backgroundColor: selectedCity === city ? "red" : "white",
-                }}
-              >
-                {city}
-              </p>
-            ))}
-          </div>
-          {selectedCity && <button>Save</button>}
+    <div className="placesAutocomplete">
+      <div className="placesAutocomplete__inputWrap">
+        <input
+          list="places"
+          type="text"
+          id="city"
+          name="city"
+          onChange={handleCityChange}
+          value={city}
+          required
+          autoComplete="on"
+        />
+        <div id="places">
+          {autocompleteCities.map((city, i) => (
+            <p
+              id={city}
+              key={i}
+              onClick={onCityClick}
+              style={{
+                backgroundColor: selectedCity === city ? "red" : "white",
+              }}
+            >
+              {city}
+            </p>
+          ))}
         </div>
+        {selectedCity && <button>Save</button>}
       </div>
-    </form>
+    </div>
   );
 }
