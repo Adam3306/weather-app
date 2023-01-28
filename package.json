@@ -16,6 +16,7 @@
     "react-router": "^6.7.0",
     "react-router-dom": "^6.7.0",
     "react-scripts": "4.0.3",
+    "react-spinners": "^0.13.8",
     "redux-logger": "^3.0.6",
     "web-vitals": "^1.0.1",
     "world-countries-capitals": "^3.4.0"

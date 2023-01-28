@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import Weather from "../features/weather/WeatherComponent";
+import Weather from "../features/weather/Weather";
 
 export default function City(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,7 +15,7 @@ export default function City(props) {
   return (
     <div>
       <Link to="/">back</Link>
-      {currentCity}
+      <Weather city={currentCity} />
     </div>
   );
 }
