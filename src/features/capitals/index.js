@@ -1,1 +1,1 @@
-export { default as Capitals } from "./Capitals";
+export { default as capitalsSlice } from "./capitalsSlice";

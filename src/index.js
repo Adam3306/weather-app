@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 
+import { apiSlice } from "./features/weather/weatherSlice";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
@@ -10,7 +12,9 @@ import "./index.css";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ApiProvider api={apiSlice}>
+      <App />
+    </ApiProvider>
   </Provider>,
   document.getElementById("root")
 );
