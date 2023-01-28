@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
-import Weather from "../features/weather/WeatherComponent";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import Weather from "../features/weather/WeatherComponent";
 
-import { getCapitalByCurrentLocation } from "../utils";
+export default function City(props) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentCity, setCurrentCity] = useState();
 
-export default function City() {
-  useEffect(async () => {
-    // TODO: Move this to redux
-    const capital = await getCapitalByCurrentLocation();
-    console.log("capital\t", capital);
-  }, []);
+  useEffect(() => {
+    const city = searchParams.get("name");
+    setCurrentCity(city);
+  }, [searchParams]);
 
   return (
     <div>
-      <Weather></Weather>
+      <Link to="/">back</Link>
+      {currentCity}
     </div>
   );
 }
