@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { City, Home, Search, NotFound, Location } from "./pages";
+import { City, Home, Search, NotFound } from "./pages";
 
 import "./App.css";
 
@@ -11,7 +11,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/city" element={<City />} />
-          <Route path="/location" element={<Location />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
