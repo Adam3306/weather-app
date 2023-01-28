@@ -10,7 +10,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getWeather: builder.query({
       query: (city) =>
-        `/weather?q=${city}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_TOKEN}`,
+        `/weather?q=${city}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_TOKEN}&units=metric`,
     }),
   }),
 });

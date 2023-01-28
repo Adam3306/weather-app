@@ -14,7 +14,7 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([logger, apiSlice.middleware]),
+    getDefaultMiddleware().concat([/*logger*/ apiSlice.middleware]),
 });
 
 setupListeners(store.dispatch);
