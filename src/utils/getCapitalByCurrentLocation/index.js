@@ -43,12 +43,10 @@ const getCapitalByCurrentLocation = async () => {
 
         let country;
 
-        console.log("resp", response);
         response.results[0].address_components.forEach(
           ({ types, long_name }) => {
             types.forEach((type) => {
               if (type === "locality") {
-                console.log("resp\t", long_name);
                 current = long_name;
               }
               if (type === "country") {
