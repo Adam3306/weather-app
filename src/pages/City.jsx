@@ -12,9 +12,5 @@ export default function City(props) {
     setCurrentCity(city);
   }, [searchParams]);
 
-  return (
-    <div>
-      <Weather city={currentCity} />
-    </div>
-  );
+  return <Weather city={currentCity} />;
 }
