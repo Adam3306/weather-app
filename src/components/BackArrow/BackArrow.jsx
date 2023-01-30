@@ -5,7 +5,7 @@ import "./BackArrow.css";
 
 export default function BackArrow() {
   return (
-    <div>
+    <div className="container">
       <Link to="/" className="backArrow">
         {"<"}
       </Link>

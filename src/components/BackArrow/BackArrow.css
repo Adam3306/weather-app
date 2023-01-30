@@ -1,7 +1,21 @@
+.container {
+  margin-right: auto;
+}
+
 .backArrow {
   color: rgb(56, 147, 177);
   font-size: 3rem;
   text-decoration: none;
   padding: 2rem;
-  left: 5%;
+  margin-right: auto;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.backArrow:hover {
+  color: gray;
+}
+
+.backArrow:active {
+  color: gray;
 }

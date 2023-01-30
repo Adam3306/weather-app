@@ -1,0 +1,13 @@
+.iconWithTextContainer {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+
+  width: 20%;
+}
+
+.text {
+  color: rgb(54, 140, 169);
+}
