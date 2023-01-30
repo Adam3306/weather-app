@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { constants, getCityId } from "../../utils";
+import { constants } from "../../utils";
 
 export const apiSlice = createApi({
   reducerPath: "apiSlice",
@@ -10,9 +10,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getWeather: builder.query({
       query: (city) =>
-        `/weather?id=${getCityId(city)}&appid=${
-          process.env.REACT_APP_OPEN_WEATHER_MAP_API_TOKEN
-        }&units=metric`,
+        `/weather?q=${city}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_TOKEN}&units=metric`,
     }),
   }),
 });

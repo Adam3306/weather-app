@@ -10,7 +10,7 @@ export const citiesSlice = createSlice({
   initialState,
   reducers: {
     addCity: (state, action) => {
-      console.log("addCity\t", action);
+      if (state.savedCapitals.includes(action.payload)) return state;
       const newState = state.savedCapitals.concat(action.payload);
 
       return {

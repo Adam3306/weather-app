@@ -21,7 +21,6 @@ export default function Weather({ city }) {
   }
 
   if (isError || error) {
-    console.log(error);
     return (
       <div className="description">
         Something went wrong
@@ -46,7 +45,7 @@ export default function Weather({ city }) {
 
     return (
       <div className="container">
-        <BackArrow />
+        <BackArrow to={"/"} />
         <Clock timezone={timezone} />
 
         <p className="cityName">{city}</p>
