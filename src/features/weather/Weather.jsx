@@ -10,7 +10,7 @@ import {
   CityTitle,
 } from "../../components";
 
-import { getHours, getMinutes } from "../../utils";
+import { timeStampToHourMinute } from "../../utils";
 
 import "./Weather.css";
 
@@ -53,6 +53,8 @@ export default function Weather({ city }) {
     const icon = `wi wi-${main.toLowerCase()}`;
     console.log("sunrise\t", sunrise);
     console.log("sunrise\t", sunset);
+    console.log("timezone\t", timezone);
+    console.log("timezone\t", sunrise + timezone);
 
     return (
       <div className="container">
@@ -68,20 +70,12 @@ export default function Weather({ city }) {
           />
           <IconWithText
             icon={"wi wi-sunrise"}
-            // TODO: create util function for this
-            text={`${getHours(
-              date,
-              new Date(sunrise * 1000).getHours()
-            )}:${getMinutes(date, new Date(sunrise * 1000).getMinutes())}`}
+            text={timeStampToHourMinute(sunrise + timezone)}
             iconSize={"1.5rem"}
           />
           <IconWithText
             icon={"wi wi-sunset"}
-            // TODO: create util function for this
-            text={`${getHours(
-              date,
-              new Date(sunset * 1000).getHours()
-            )}:${getMinutes(date, new Date(sunset * 1000).getHours())}`}
+            text={timeStampToHourMinute(sunset + timezone)}
             iconSize={"1.5rem"}
           />
         </div>

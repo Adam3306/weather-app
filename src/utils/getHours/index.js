@@ -1,5 +1,6 @@
 const getHours = (date, hours) => {
   let currentTimeHours = Number(date.getUTCHours() + hours);
+
   if (currentTimeHours >= 24) {
     currentTimeHours = currentTimeHours - 24;
   }
