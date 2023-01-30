@@ -10,6 +10,7 @@ import "./search.css";
 export default function Search() {
   const dispatch = useDispatch();
   const capitals = useSelector((state) => state.capitals.capitals);
+  const savedCapitals = useSelector((state) => state.cities.savedCapitals);
   const navigate = useNavigate();
   const [city, setCity] = useState("");
   const [selectedCity, setSelectedCity] = useState();
@@ -25,10 +26,11 @@ export default function Search() {
     let input = e.target.value;
 
     if (input.length) {
-      results = capitals
-        .filter((item) => {
-          return item.toLowerCase().includes(input.toLowerCase());
-        })
+      results = capitals.filter((item) => {
+        return item.toLowerCase().includes(input.toLowerCase());
+      });
+      results = results
+        .filter((result) => !savedCapitals.includes(result))
         .slice(0, 8);
     }
 
