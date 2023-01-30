@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import Weather from "../features/weather/Weather";
 
 export default function City(props) {
@@ -14,7 +14,6 @@ export default function City(props) {
 
   return (
     <div>
-      <Link to="/">back</Link>
       <Weather city={currentCity} />
     </div>
   );
