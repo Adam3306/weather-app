@@ -1,27 +1,14 @@
-import React, { useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { CityRow } from "../../components";
-import { getCapitalByCurrentLocation } from "../../utils";
-import { addCity } from "./citiesSlice";
 
 import "./cities.css";
 
 export default function Cities() {
-  const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities.savedCapitals);
   const navigate = useNavigate();
-
-  const setCapital = useCallback(async () => {
-    // TODO: move this away
-    const capital = await getCapitalByCurrentLocation();
-    dispatch(addCity(capital));
-  }, [dispatch]);
-
-  useEffect(() => {
-    setCapital();
-  }, []);
 
   const navigateToCityPage = (city) => {
     navigate("/city", {
@@ -36,16 +23,18 @@ export default function Cities() {
 
   return (
     <div className="background">
-      {cities.map((city) => (
+      {cities.map((city, i) => (
         <CityRow
-          key={city}
+          key={city + i}
           name={city}
           onClick={() => {
             navigateToCityPage(city);
           }}
         />
       ))}
-      <button className="plusButton">+</button>
+      <button className="plusButton" onClick={() => navigate("/search")}>
+        +
+      </button>
     </div>
   );
 }

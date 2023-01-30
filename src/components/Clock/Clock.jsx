@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { getMinutes, getHours } from "../../utils";
+
 import "./Clock.css";
 
 const Clock = ({ timezone }) => {
@@ -21,8 +23,14 @@ const Clock = ({ timezone }) => {
 
   return (
     <>
-      <span className="clock">{date.getUTCHours() + hours}</span>
-      <span className="clock">{date.getUTCMinutes() + minutes}</span>
+      <span className="clock">
+        {getHours(date, hours)}
+        {/* {date.getUTCHours() + hours} */}
+      </span>
+      <span className="clock">
+        {getMinutes(date, minutes)}
+        {/* {date.getUTCHours() + hours} */}
+      </span>
     </>
   );
 };
