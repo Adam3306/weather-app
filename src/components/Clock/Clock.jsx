@@ -23,14 +23,8 @@ const Clock = ({ timezone }) => {
 
   return (
     <>
-      <span className="clock">
-        {getHours(date, hours)}
-        {/* {date.getUTCHours() + hours} */}
-      </span>
-      <span className="clock">
-        {getMinutes(date, minutes)}
-        {/* {date.getUTCHours() + hours} */}
-      </span>
+      <span className="clock">{getHours(date, hours)}</span>
+      <span className="clock">{getMinutes(date, minutes)}</span>
     </>
   );
 };
