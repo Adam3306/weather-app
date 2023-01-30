@@ -2,7 +2,13 @@ import React from "react";
 import HashLoader from "react-spinners/HashLoader";
 
 import { useGetWeatherQuery } from "./weatherSlice";
-import { Clock, BackArrow, IconWithText } from "../../components";
+import {
+  Clock,
+  BackArrow,
+  IconWithText,
+  IconWithDescription,
+  CityTitle,
+} from "../../components";
 
 import { timeStampToHourMinute } from "../../utils";
 
@@ -47,17 +53,8 @@ export default function Weather({ city }) {
       <div className="container">
         <BackArrow to={"/"} />
         <Clock timezone={timezone} />
-
-        <p className="cityName">{city}</p>
-
-        <div className="iconWithDescription">
-          <i
-            className={icon}
-            style={{ color: "rgb(56,147,177)", fontSize: "4rem" }}
-          ></i>
-          <p className="description">{description}</p>
-        </div>
-
+        <CityTitle title={city} />
+        <IconWithDescription icon={icon} description={description} />
         <div className="dataContainer">
           <IconWithText
             icon={"wi wi-thermometer"}

@@ -1,6 +1,7 @@
 import Geocode from "react-geocode";
 import wcc from "world-countries-capitals";
 
+import capitalizeFirstLetter from "../capitalizeFirstLetter";
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
 
@@ -23,39 +24,47 @@ Geocode.setLocationType("ROOFTOP");
 Geocode.enableDebug();
 
 const getCapitalByCurrentLocation = async () => {
-  let capital = "Budapest";
-  if (!navigator.geolocation) {
-    console.error("Geolocation is not supported by your browser");
-  } else {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      // Get address from latitude & longitude.
-      const response = await Geocode.fromLatLng(
-        position.coords.latitude,
-        position.coords.longitude
-      );
+  return new Promise((resolve) => {
+    let current = null;
 
-      // Get address from latitude & longitude.
-      Geocode.fromLatLng(position.coords.latitude, position.coords.longitude);
+    if (!navigator.geolocation) {
+      console.error("Geolocation is not supported by your browser");
+      resolve(["Budapest"]);
+    } else {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        // Get address from latitude & longitude.
+        const response = await Geocode.fromLatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        );
 
-      let country;
-      response.results[0].address_components.forEach(({ types, long_name }) => {
-        types.forEach((type) => {
-          if (type === "country") {
-            country = long_name;
+        // Get address from latitude & longitude.
+        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude);
+
+        let country;
+
+        console.log("resp", response);
+        response.results[0].address_components.forEach(
+          ({ types, long_name }) => {
+            types.forEach((type) => {
+              if (type === "locality") {
+                console.log("resp\t", long_name);
+                current = long_name;
+              }
+              if (type === "country") {
+                country = long_name;
+              }
+            });
           }
-        });
+        );
+
+        let { capital: capitalFromLocation } =
+          wcc.getCountryDetailsByName(country)[0];
+
+        resolve([capitalizeFirstLetter(capitalFromLocation), current]);
       });
-
-      const { capital: capitalFromLocation } =
-        wcc.getCountryDetailsByName(country)[0];
-
-      wcc.getCountryDetailsByName(country);
-
-      capital = capitalFromLocation;
-    });
-  }
-
-  return capital;
+    }
+  });
 };
 
 export default getCapitalByCurrentLocation;
