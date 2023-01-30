@@ -1,0 +1,21 @@
+.weather {
+}
+
+.cityname {
+  color: rgb(146, 183, 204);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.temp {
+  color: rgb(54, 140, 169);
+}
+
+.description {
+  color: rgb(146, 183, 204);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}

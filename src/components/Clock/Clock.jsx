@@ -1,17 +1,30 @@
 import { useState, useEffect } from "react";
 
-function Clock() {
+import "./Clock.css";
+
+const Clock = () => {
   const [date, setDate] = useState(new Date());
 
-  function refreshClock() {
+  const refreshClock = () => {
     setDate(new Date());
-  }
+  };
+
   useEffect(() => {
-    const timerId = setInterval(refreshClock, 1000);
+    const timerId = setInterval(refreshClock, 1000 * 60);
     return function cleanup() {
       clearInterval(timerId);
     };
   }, []);
-  return <span>{date.toLocaleTimeString()}</span>;
-}
+
+  return (
+    <>
+      <span className="clock">
+        {date.toLocaleTimeString([], { hour: "2-digit" })}
+      </span>
+      <span className="clock">
+        {date.toLocaleTimeString([], { minute: "2-digit" })}
+      </span>
+    </>
+  );
+};
 export default Clock;

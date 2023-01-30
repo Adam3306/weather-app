@@ -1,20 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-// import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 
-// import { apiSlice } from "./features/weather/weatherSlice";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 
 import "./index.css";
+import "weather-icons/css/weather-icons.css";
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <ApiProvider api={apiSlice}> */}
     <App />
-    {/* </ApiProvider> */}
   </Provider>,
   document.getElementById("root")
 );

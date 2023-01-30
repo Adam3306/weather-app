@@ -1,16 +1,17 @@
 .background {
-  background-color: darkcyan;
+  background-color: rgb(19, 35, 52);
 }
 
 .plusButton {
   padding: 0;
   border: none;
   background: none;
-  color: greenyellow;
+  color: rgb(1, 255, 63);
   font-size: 3rem;
   cursor: pointer;
 }
 
 .plusButton:hover {
   color: gray;
+  font-weight: bold;
 }
