@@ -10,7 +10,7 @@ import {
   CityTitle,
 } from "../../components";
 
-import { timeStampToHourMinute } from "../../utils";
+import { getHours, getMinutes } from "../../utils";
 
 import "./Weather.css";
 
@@ -46,8 +46,13 @@ export default function Weather({ city }) {
 
     const { description, main } = weather[0];
 
+    const date = new Date();
+    date.setSeconds(date.getSeconds() + timezone);
+    console.log("timezone a\t", date);
     // TODO: fix icon mapping
     const icon = `wi wi-${main.toLowerCase()}`;
+    console.log("sunrise\t", sunrise);
+    console.log("sunrise\t", sunset);
 
     return (
       <div className="container">
@@ -63,12 +68,20 @@ export default function Weather({ city }) {
           />
           <IconWithText
             icon={"wi wi-sunrise"}
-            text={timeStampToHourMinute(sunrise)}
+            // TODO: create util function for this
+            text={`${getHours(
+              date,
+              new Date(sunrise * 1000).getHours()
+            )}:${getMinutes(date, new Date(sunrise * 1000).getMinutes())}`}
             iconSize={"1.5rem"}
           />
           <IconWithText
             icon={"wi wi-sunset"}
-            text={timeStampToHourMinute(sunset)}
+            // TODO: create util function for this
+            text={`${getHours(
+              date,
+              new Date(sunset * 1000).getHours()
+            )}:${getMinutes(date, new Date(sunset * 1000).getHours())}`}
             iconSize={"1.5rem"}
           />
         </div>
