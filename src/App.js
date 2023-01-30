@@ -14,7 +14,9 @@ function App() {
 
   useEffect(() => {
     const setCapital = async () => {
-      const capital = await getCapitalByCurrentLocation();
+      const [capital, current] = await getCapitalByCurrentLocation();
+
+      dispatch(addCity(current));
       dispatch(addCity(capital));
     };
 

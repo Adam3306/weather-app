@@ -2,48 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { BackArrow } from "../../components";
+import { BackArrow, CitySearchRow } from "../../components";
 import { addCity } from "../cities/citiesSlice";
 
 import "./search.css";
-
-const Name = (props) => {
-  const { name, highlight, selected } = props;
-  if (!highlight.trim()) {
-    return <div>{name}</div>;
-  }
-  const escapeRegExp = (str = "") =>
-    str.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
-
-  const regex = new RegExp(`(${escapeRegExp(highlight)})`, "gi");
-
-  const parts = name.split(regex);
-
-  if (selected) {
-    return (
-      <div className="cityName" {...props}>
-        <span className="match">{name}</span>
-      </div>
-    );
-  }
-  return (
-    <div className="cityName" {...props}>
-      {parts
-        .filter((part) => part)
-        .map((part, i) =>
-          regex.test(part) ? (
-            <span className="match" key={i}>
-              {part}
-            </span>
-          ) : (
-            <span className="rest" key={i}>
-              {part}
-            </span>
-          )
-        )}
-    </div>
-  );
-};
 
 export default function Search() {
   const dispatch = useDispatch();
@@ -83,7 +45,7 @@ export default function Search() {
   return (
     <div className="placesAutocomplete">
       <BackArrow to={"/"} />
-
+      {/* THIS WOULD BE A COMPONENT CALLED SearchInput - START */}
       <div className="search">
         <input
           type="input"
@@ -96,10 +58,12 @@ export default function Search() {
           autoComplete="off"
         />
       </div>
+      {/* THIS WOULD BE A COMPONENT CALLED SearchInput - END */}
 
+      {/* THIS WOULD BE A COMPONENT CALLED SearchResults - START */}
       <div className="places">
         {autocompleteCities.map((item, i) => (
-          <Name
+          <CitySearchRow
             key={i}
             onClick={() => onCityClick(item)}
             selected={selectedCity === item}
@@ -108,11 +72,15 @@ export default function Search() {
           />
         ))}
       </div>
+      {/* THIS WOULD BE A COMPONENT CALLED SearchResults - END */}
+
+      {/* THIS WOULD BE A COMPONENT CALLED SaveButton - START */}
       {selectedCity && (
         <button className="save" onClick={onSaveClick}>
           SAVE
         </button>
       )}
+      {/* THIS WOULD BE A COMPONENT CALLED SaveButton - END */}
     </div>
   );
 }

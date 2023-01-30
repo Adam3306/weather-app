@@ -30,19 +30,6 @@
   left: 10px;
 }
 
-.match {
-  color: rgb(116, 147, 167);
-}
-
-.cityName {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.rest {
-  color: rgb(37, 124, 189);
-}
-
 .places {
   text-align: left;
   padding-top: 2%;
