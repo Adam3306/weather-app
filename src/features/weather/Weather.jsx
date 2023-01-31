@@ -48,13 +48,9 @@ export default function Weather({ city }) {
 
     const date = new Date();
     date.setSeconds(date.getSeconds() + timezone);
-    console.log("timezone a\t", date);
+
     // TODO: fix icon mapping
     const icon = `wi wi-${main.toLowerCase()}`;
-    console.log("sunrise\t", sunrise);
-    console.log("sunrise\t", sunset);
-    console.log("timezone\t", timezone);
-    console.log("timezone\t", sunrise + timezone);
 
     return (
       <div className="container">
