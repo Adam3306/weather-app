@@ -31,36 +31,44 @@ const getCapitalByCurrentLocation = async () => {
       console.error("Geolocation is not supported by your browser");
       resolve(["Budapest"]);
     } else {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        // Get address from latitude & longitude.
-        const response = await Geocode.fromLatLng(
-          position.coords.latitude,
-          position.coords.longitude
-        );
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          // Get address from latitude & longitude.
+          const response = await Geocode.fromLatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          );
 
-        // Get address from latitude & longitude.
-        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude);
+          // Get address from latitude & longitude.
+          Geocode.fromLatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          );
 
-        let country;
+          let country;
 
-        response.results[0].address_components.forEach(
-          ({ types, long_name }) => {
-            types.forEach((type) => {
-              if (type === "locality") {
-                current = long_name;
-              }
-              if (type === "country") {
-                country = long_name;
-              }
-            });
-          }
-        );
+          response.results[0].address_components.forEach(
+            ({ types, long_name }) => {
+              types.forEach((type) => {
+                if (type === "locality") {
+                  current = long_name;
+                }
+                if (type === "country") {
+                  country = long_name;
+                }
+              });
+            }
+          );
 
-        let { capital: capitalFromLocation } =
-          wcc.getCountryDetailsByName(country)[0];
+          let { capital: capitalFromLocation } =
+            wcc.getCountryDetailsByName(country)[0];
 
-        resolve([capitalizeFirstLetter(capitalFromLocation), current]);
-      });
+          resolve([capitalizeFirstLetter(capitalFromLocation), current]);
+        },
+        () => {
+          resolve(["Budapest"]);
+        }
+      );
     }
   });
 };
